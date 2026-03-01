@@ -22,7 +22,10 @@ function dropped(e) {
     e.preventDefault();
     console.log("dropped");
 
-    if (this.children.length > 0) {
+    const existingLabel = this.querySelector(".label")
+
+    if (existingLabel) {
+        console.log("Zone is full")
         return;
     }
 
