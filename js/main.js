@@ -22,6 +22,10 @@ function dropped(e) {
     e.preventDefault();
     console.log("dropped");
 
+    if (this.children.length > 0) {
+        return;
+    }
+
     //drop the piece
     this.appendChild(currrentDraggedElement);
 
