@@ -3,6 +3,8 @@ console.log("JavaScript File is linked");
 // variables
 const labels = document.querySelectorAll(".label");
 const targetZones = document.querySelectorAll(".target-zone");
+const resetButton = document.querySelector("#reset-btn")
+const labelBox = document.querySelector("#label-box")
 let currrentDraggedElement = null;
 // add variable for reset button;
 
@@ -22,7 +24,10 @@ function dropped(e) {
     e.preventDefault();
     console.log("dropped");
 
-    if (this.children.length > 0) {
+    const existingLabel = this.querySelector(".label")
+
+    if (existingLabel) {
+        console.log("Zone is full")
         return;
     }
 
@@ -31,6 +36,14 @@ function dropped(e) {
 
     //reset the reference
     currrentDraggedElement = null;
+}
+
+function resetPuzzle() {
+    console.log("Reset button clicked");
+    
+    labels.forEach(label => {
+        labelBox.appendChild(label);
+    });
 }
 
 // Event Listeners
@@ -42,3 +55,5 @@ targetZones.forEach(zone => {
     zone.addEventListener("dragover", dragOver);
     zone.addEventListener("drop", dropped);
 })
+
+resetButton.addEventListener("click", resetPuzzle);
